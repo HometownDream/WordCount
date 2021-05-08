@@ -7,8 +7,8 @@ void count_char(char *str) {//计算字符数
     int ch;
     FILE* fp;
     
-    if ((fp = fopen(str, "r")) == NULL) {//打开文件，如果文件不存在，则输出“Can't open xxx.txt”
-        printf("Can't open %s\n", str);
+    if ((fp = fopen(str, "r")) == NULL) {//打开文件，如果文件不存在，则输出“no such file: 'xxx.txt'”
+        printf(" no such file: '%s' \n", str);
         exit(1);
     }
     while ((ch = fgetc(fp)) != EOF)//把文本文件中的每个字符取出来，然后数量加一进行统计，直到文件结尾
@@ -25,8 +25,8 @@ void count_word(char* str) {//计算单词数
     int ch;
     FILE* fp;
 
-    if ((fp = fopen(str, "r")) == NULL) {//打开文件，如果文件不存在，则输出“Can't open xxx.txt”
-        printf("Can't open %s\n", str);
+    if ((fp = fopen(str, "r")) == NULL) {//打开文件，如果文件不存在，则输出“no such file: 'xxx.txt'”
+        printf(" no such file: '%s' \n", str);
         exit(1);
     }
     while ((ch = fgetc(fp)) != EOF)//统计被‘,’或‘ ’分割的单词数
@@ -52,10 +52,11 @@ int main(int argc, char* argv[])//主函数
 
         if (strcmp(s1, str1)==0) {
             count_word(s2);
-        }
-       
-        if (strcmp(s1, str2)==0) {
+        }else if (strcmp(s1, str2)==0) {
             count_char(s2);
+        }else{
+            printf("输入格式有误，退出");
+            return 0;
         }
        
     return 0;
